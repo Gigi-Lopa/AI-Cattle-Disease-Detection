@@ -1,6 +1,8 @@
 import React, {useRef, useState} from 'react'
+import Alert from '@mui/material/Alert';
 
-function UploadImage() {
+
+function UploadImage({showError, set_showError}) {
   let input_ref = useRef();
   let [file, set_file] = useState(null);
   let [is_dragging, set_is_dragging] = useState(false)
@@ -23,6 +25,22 @@ function UploadImage() {
     set_is_dragging(false);
 
     const droppedFile = e.dataTransfer.files[0];
+
+    if (!['image/png', 'image/jpeg', 'image/jpg'].includes(droppedFile.type)) {
+      set_showError({
+        display: true,
+        message: "OOP's Something bad happened. Please upload only .PNG, .JPEG, .JPG"
+      });
+      setTimeout(() => {
+        set_showError({
+          display: false,
+          message: ""
+        });
+      }, 3000);
+      reset_form();
+      return;
+    }
+    
     set_file(droppedFile);
     onPreview(droppedFile)
 
@@ -98,6 +116,12 @@ function UploadImage() {
                   <label style={{fontSize : "0.9rem"}}>Detect foot and mouth disease</label>
                 </div> 
               </div>
+              {
+                showError.display && 
+                <Alert severity="error" className='mt-3'>
+                  {showError.message}
+                </Alert>
+              }
               <div className='flex flex-r mt-3'>
                 <button type='submit' className='btn btn-sm btn-dark me-3'>
                   <span className='bi bi-file-image me-2'></span>
