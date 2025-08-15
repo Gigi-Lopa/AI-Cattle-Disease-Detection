@@ -1,5 +1,6 @@
 /frontend/node_modules
-/backend/models
+/backend/models/Cattle_Skin_Disease
+/backend/uploads
 
 # production
 /frontend/build
