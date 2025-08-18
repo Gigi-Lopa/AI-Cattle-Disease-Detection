@@ -1,5 +1,5 @@
 from flask import Flask, request, send_file
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING
 from flask_restful import Resource, Api
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
@@ -78,11 +78,11 @@ class Auth(Resource):
             "password" : hashed_password
         })
 
-        if user.get("inserted_id"):
+        if user.inserted_id:
             return {
                 "status" : "OK",
                 "message" : "User registered",
-                "id" : str(user.get("inserted_id")),
+                "id" : str(user.inserted_id),
                 "fullname" : fullname
             }, 200
 
@@ -158,9 +158,39 @@ class Images(Resource):
 
         return send_file(image_path, mimetype="image/jpeg")
     
+class History(Resource):
+    def get(self, user_id):
+        try:
+            docs = predictions.find(
+                {"owner_id": user_id}
+            ).sort("created_at", DESCENDING)
+
+            result = []
+
+            for doc in docs:
+                if "predictions" in doc and len(doc["predictions"]) > 0:
+                    top_pred = max(
+                        doc["predictions"],
+                        key=lambda p: p["results"].get("score") or p["results"].get("confidence") or 0
+                    )
+
+                    result.append({
+                        "filename": doc.get("filename"),
+                        "prediction_type": top_pred.get("type"),
+                        "label": top_pred.get("results", {}).get("label") or top_pred.get("results", {}).get("message"),
+                        "score_or_confidence": top_pred.get("results", {}).get("score") or top_pred.get("results", {}).get("confidence")
+                    })
+
+            return {"history": result, "success": True}, 200
+
+        except Exception as e:
+            return {"error": str(e)}, 500
+
+
 api.add_resource(Auth, "/auth")
 api.add_resource(Detection, "/detect")
 api.add_resource(Images, "/image/<string:image_name>")
+api.add_resource(History, "/history/<string:user_id>")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
