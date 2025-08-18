@@ -8,7 +8,7 @@ function UploadImage({ id , updateResults}) {
   let [is_loading, set_isloading] = useState(false)
   let [options, set_options] = useState({
     skin_disease : true,
-    fmd : false
+    fmd : true
   })
   let [status, set_status] = useState({
     isOptionsChecked : false
@@ -30,13 +30,6 @@ function UploadImage({ id , updateResults}) {
     set_file(droppedFile);
     onPreview(droppedFile)
 
-  };
-
-  let onhandleOption = (e) => {
-    set_options(prev => ({
-      ...prev,
-      [e.target.name]: !prev[e.target.name]
-    }));
   };
 
   let reset_form = () =>{
@@ -123,28 +116,6 @@ function UploadImage({ id , updateResults}) {
                 alt='preview'
                 className='preview'
               />
-              <div className='mt-2'>
-                <div className='flex flex-r'>
-                  <input
-                    type='checkbox'
-                    checked={options.skin_disease}
-                    name='skin_disease'
-                    onChange={onhandleOption}
-                    className='me-2'
-                  />
-                  <label style={{fontSize : "0.9rem"}}>Detect skin disease</label>
-                </div> 
-                <div className='flex flex-r'>
-                  <input
-                    type='checkbox'
-                    checked={options.fmd}
-                    name='fmd'
-                    onChange={onhandleOption}
-                    className='me-2'
-                  />
-                  <label style={{fontSize : "0.9rem"}}>Detect foot and mouth disease</label>
-                </div> 
-              </div>
               {
                 status.isOptionsChecked &&
                 <div className='alert alert-danger mt-2'>

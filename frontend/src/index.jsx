@@ -26,7 +26,7 @@ let router = createBrowserRouter([
     element : <Register/>
   },
   {
-    path : "/history/:id",
+    path : "/history/:user_id",
     element : <DetectionHistory/>
   },
   {

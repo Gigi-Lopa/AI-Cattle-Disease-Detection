@@ -110,7 +110,7 @@ function Register() {
                 </div>
                 <div className='form-body'> 
                     <div className='form-group flex flex-c'>
-                        <label>fullname</label>
+                        <label>Fullname</label>
                         <input
                             name='fullname'
                             type='text'
