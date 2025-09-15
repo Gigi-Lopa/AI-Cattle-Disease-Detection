@@ -1,12 +1,3 @@
-"""
-return value
-[{'label': 'ocular', 'score': 0.850920557975769},
- {'label': 'BlueTongue', 'score': 0.0632033720612526},
- {'label': 'Papillomatosis', 'score': 0.04143591970205307},
- {'label': 'PhotoSensation', 'score': 0.023926731199026108},
- {'label': 'Ringworm', 'score': 0.02051342837512493}]
-"""
-#import ollama
 from transformers import pipeline 
 
 class DetectSkinDiease:

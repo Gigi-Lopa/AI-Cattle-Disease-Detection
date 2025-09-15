@@ -45,9 +45,10 @@ function Index() {
           <Link to={`/history/${token.id}`} className='nav-link'>History</Link>
         </Navbar>
         <Weather/>
+
         <div className='container'>
           <div className='mt-5'>
-            <h1 className='text-center hd-2 mb-3'>AI Cattle disease Detection</h1>
+            <h1 className='text-center hd-2 mb-3'>Cattle disease Detection</h1>
             <div className='row flex-space'>
               <div className={`${results != null ? "col-md-5" : "col-md-12"} mt-3`}>
                 <UploadImage id = {token.id} updateResults = {updateResults}/>

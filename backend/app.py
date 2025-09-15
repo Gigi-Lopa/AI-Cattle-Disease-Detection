@@ -63,7 +63,7 @@ class Auth(Resource):
         fullname = data.get("fullname")
         email = data.get("email")
         password = data.get("password")
-
+        occupation = data.get("occupation")
 
         if not fullname and not email and not password:
             return {
@@ -75,6 +75,7 @@ class Auth(Resource):
         user = users.insert_one({
             "fullname": fullname,
             "email" : email,
+            "occupation" : occupation,
             "password" : hashed_password
         })
 

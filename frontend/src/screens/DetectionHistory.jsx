@@ -8,8 +8,23 @@ export default function DetectionHistory() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    let [token, set_token] = useState({username : "", id : ""})
 
     useEffect(() => {
+        let data = localStorage.getItem("token")
+        if (data){
+        try{
+            let parsed_token = JSON.parse(data)
+            set_token({
+            id : parsed_token?.id,
+            username : parsed_token?.username,
+
+            });
+        } catch{
+            console.log("Error")
+        }
+        }
+
         const fetchHistory = async () => {
             try {
                 const res = await fetch(`http://localhost:5000/history/${user_id}`);
@@ -28,7 +43,7 @@ export default function DetectionHistory() {
 
     return (
         <div className='main-content'>
-            <Navbar username="Gilbert">
+            <Navbar username={token.username}>
                 <Link to={"/"} className='nav-link'>Home</Link>
             </Navbar>
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import Cow from "../styles/images/cow.svg"
 
 function Navbar({ username, children }) {
   
@@ -13,9 +14,9 @@ function Navbar({ username, children }) {
         <div className='nav-header col-md-5'>
           <div className='flex flex-r'>
             <div className='rounded-icon'>
-              <span className='bi bi-hurricane'></span>
+              <img src={Cow} height={25} width={25}></img>
             </div>
-            <h3>AI Cattle Disease Detection</h3>
+            <h3 className='self-center'>Cattle Disease Detection</h3>
           </div>
         </div>
         <div className='nav-body col-md-5'>

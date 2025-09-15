@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import "../styles/css/main.css"
 import "js-cookie"
 import { useNavigate } from 'react-router'
+import Cow from "../styles/images/cow.svg"
 
 function Register() {
     let navigate = useNavigate()
     let [form_data, set_form_data] = useState({
         fullname : "",
+        occupation : "farmer",
         confirm_password  :"",
         password : "",
         email : "",
@@ -14,6 +16,7 @@ function Register() {
     })
     let [input_errors, set_input_errors] = useState({
         fullname : "",
+        occupation : "",
         confirm_password  :"",
         password : "",
         email : "",
@@ -30,13 +33,13 @@ function Register() {
     }
 
     let handleRegister = ()=>{
-        let {password, fullname, email} = form_data
+        let {password, fullname, email, occupation} = form_data
         fetch(`${import.meta.env.VITE_API_URL}/auth`,{
             method : "PUT",
             headers : {
                 "Content-Type" : "application/json"
             },
-            body : JSON.stringify({ fullname,password,email  })})
+            body : JSON.stringify({ fullname,password,email, occupation  })})
             .then(response => response.json())
             .then(response =>{
                 if(response.status !== "OK"){
@@ -100,7 +103,7 @@ function Register() {
                 <div className='form-header'>
                     <div className='flex flex-r flex-center'>
                         <div className='rounded-icon'>
-                            <span className='bi bi-hurricane'></span>
+                            <img src={Cow} height={30} width={30}></img>
                         </div>
                     </div>
                     <div className='form-header-info'>
@@ -128,6 +131,21 @@ function Register() {
                             onChange={onhandleChange}
                             className={input_errors.email ? "input-error" : ""}
                         />
+                    </div>
+                    <div className='form-group flex flex-c'>    
+                    <label>Occupation</label>
+                        <select 
+                            value={form_data.occupation}
+                            className={input_errors.occupation ? "input-error" : ""}
+                            name='occupation'
+                            required
+                            onChange={onhandleChange}>
+                            <option value={"farmer"}>Farmer</option>
+                            <option value={"veterinarian"}>Veterinarian</option>
+                            <option value={"student"}>Student</option>
+                            <option value={"researcher"}>Researcher</option>
+                            <option value={"other"}>Other</option>
+                        </select> 
                     </div>
                     <div className='form-group flex flex-c'>
                         <label>Password</label>

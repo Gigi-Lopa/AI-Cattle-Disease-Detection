@@ -27,6 +27,9 @@ a{
     justify-content: center;
     align-items: center;
 }
+.self-center{
+    align-self: center;
+}
 .flex-space{
     justify-content: space-between;
 }
@@ -43,25 +46,23 @@ a{
 .auth{
     width: 100%;
     height: 100vh;
-background: #ffffff;
-background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 1) 100%);
+    background: url("../images/hero_v2.jpg");
+    background-size: cover;
+    background-position: center;
 }
 .auth-form{
     background-color: white;
     border-radius: 7.5px;
     width: 30%;
-    padding: 15px 25px;
+    padding: 20px 25px;
     border: 1px solid #d1d1d1;
 }
 .rounded-icon{
     background-color: #dcfce7;
     border-radius:50% ;
-    padding: 10.2px 15px;
+    padding: 18px 20px;
 }
-.rounded-icon span{
-    color: #16a34a;
-    font-size: 1.1rem;
-}
+
 .form-header-info{
     margin-top: 15px;
 }
@@ -83,7 +84,8 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
     margin-bottom: 5px;
     font-size: 0.9rem;
 }
-.form-group input{
+.form-group input,
+.form-group select{
     border-radius: 7.5px;
     border: 1px solid #D1D5DB;
     padding: 7px 10px;
@@ -102,8 +104,7 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
 .main-content{
     min-height: 100vh;
     width: 100%;
-     background: #ffffff;
-background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 1) 100%);
+    background-color: #f7f7f7;
 
 }
 .navbar{
@@ -115,7 +116,7 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
 .navbar .rounded-icon {
     height: fit-content;
     margin-right: 15px;
-    padding: 5px 10px;
+    padding: 11px 12px;
 }
 .navbar .nav-header h3{
     font-size: 1.2rem;
@@ -241,7 +242,8 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
     width: 100%;
     min-height: 25vh;
     border-radius: 7.5px;
-    padding: 15px;
+    padding: 25px;
+    border: 1px solid #d1d1d1;
     background-color: white;
 }
 .detection-history .bi-clock-history{
@@ -288,10 +290,13 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
 /*** WEATHER APPLICATION ***/
 .weather-container{
     width: 100%;
+    padding: 50px 0px;
+    background: url("../images/hero_v2.jpg");
+    background-size: cover;
+    background-position: center;
 }
 .weather-main{
     min-height: 50vh;
-    margin-top: 50px;
     background-color: #ffffff;
     border: 1px solid #d1d1d1;
     border-radius: 15px;
@@ -334,7 +339,7 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
 }
 .other-stats{
     margin-top: 20px;
-    margin-left: -50px;
+    margin-left: 20px;
 }
 .other-stats p{
     color: #494949;
@@ -361,4 +366,22 @@ background: linear-gradient(1deg,rgba(255, 255, 255, 1) 0%, rgba(207, 255, 232, 
     color: #494949;
     font-size: 0.9rem;
 
+}
+.detection-container{
+    background-color: white;
+    width: 100%;
+}
+.text-sm{
+    font-size: 0.9rem;
+}
+.humidity span{
+ margin-top: 50px;
+ font-size: 1.5em;   
+}
+.title-sm{
+    font-size: 0.9rem;
+    color: #737373;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 2px;
 }

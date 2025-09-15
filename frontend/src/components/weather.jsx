@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Wind, CloudRain } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Wind, Droplets, Thermometer } from "lucide-react";
 
 function Weather() {
   const [weather, setWeather] = useState(null);
@@ -12,13 +12,15 @@ function Weather() {
       time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
   });
-    const diseaseRisks = [
-    { maxTemp: 0, disease: "Frostbite risk", description: "Extremely low temps can cause frostbite and hypothermia in cows.", colorClass: "bg-primary text-white" },
-    { maxTemp: 10, disease: "Respiratory issues", description: "Cold weather increases risk of respiratory diseases.", colorClass: "bg-info text-dark" },
-    { maxTemp: 25, disease: "Normal range", description: "Temperature is safe for cattle.", colorClass: "bg-success text-white" },
-    { maxTemp: 35, disease: "Heat stress", description: "High temperature can lead to heat stress, reduced milk yield, and dehydration.", colorClass: "bg-warning text-dark" },
-    { maxTemp: Infinity, disease: "Severe heat stress", description: "Extreme heat may cause severe health issues, including death.", colorClass: "bg-danger text-white" },
-    ];
+
+  const diseaseRisks = [
+    { maxHumidity: 40, disease: "Ringworm", description: "Dry conditions can favor fungal infections like ringworm.", colorClass: "alert-warning" },
+    { maxHumidity: 60, disease: "Papillomatosis", description: "Moderate humidity increases the risk of skin warts and papillomas.", colorClass: "alert-info" },
+    { maxHumidity: 75, disease: "Ocular infections", description: "Higher humidity can promote bacterial growth, causing eye infections.", colorClass: "alert-primary" },
+    { maxHumidity: 90, disease: "Photosensitization", description: "Very humid environments combined with sunlight can worsen photosensitivity.", colorClass: "alert-secondary" },
+    { maxHumidity: Infinity, disease: "Foot and Mouth Disease", description: "Extremely humid conditions encourage spread of viral infections like FMD and other prothomalo cases.", colorClass: "alert-danger" },
+  ];
+
 
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -35,7 +37,7 @@ function Weather() {
     try {
       const res = await fetch(url, options);
       const data = await res.json();
-
+      console.log(data)
       const weatherData = {
         todayData: {
           temp: Math.round((parseFloat(data.current_observation.condition.temperature) - 32) * 5 / 9),
@@ -79,9 +81,10 @@ function Weather() {
 
         if (cached && Date.now() - lastFetch < THIRTY_MINUTES) {
           setWeather(JSON.parse(cached));
+          console.log(cached)
           setLoading(false);
         } else {
-         // fetchWeather(latitude, longitude);
+          //fetchWeather(latitude, longitude);
         }
       },
       () => {
@@ -92,10 +95,9 @@ function Weather() {
     );
   }, []);
 
-    const getDiseaseRisk = (temp) => {
-        return diseaseRisks.find(risk => temp <= risk.maxTemp);
-    };
-
+  function getDiseaseRisk(humidity) {
+    return diseaseRisks.find(risk => humidity <= risk.maxHumidity) || diseaseRisks[diseaseRisks.length - 1];
+  }
 
   if (loading) return (
     <div className=' weather-main-cp flex flex-c flex-center'>
@@ -123,29 +125,33 @@ function Weather() {
             <div className='main-temp'>
               <div className='flex flex-r flex-center'>
                 <div className='temp'>
-                  <h1>{weather.todayData.temp}°</h1>
-                  <h6>{weather.todayData.label}</h6>
+                  <div className='humidity flex flex-r gap-2'>
+                    <h1>{weather.todayData.humidity}</h1>
+                    <span className='text-sm'>%</span>
+                  </div>
+                  <h6 className='title-sm text-center'>{weather.todayData.label}</h6>
                 </div>
-                <div className='other-stats gap-3'>
+                <div className='other-stats gap-3 mt-4'>
                   <div className='flex flex-r gap-3'>
                     <Wind color='#494949'/>
                     <p>{weather.todayData.windSpeed} km/h</p>
                   </div>
                   <div className='flex flex-r gap-3'>
-                    <CloudRain color='#494949'/>
-                    <p>{weather.todayData.humidity}%</p>
+                    <Thermometer color='#494949'/>
+                    <p>{weather.todayData.temp}°</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className='days'>
+            {/*
+             <div className='days'>
               <div className='flex flex-r gap-3 flex-center'>
                 {weather.forecasts.map((forecast, index) => (
                   <div key={index} className='day gap-3'>
                     <span className='text-center text-upper'>{forecast.day}</span>
                     <div className='day-temp'>
-                      <h1 className='text-center'>{forecast.temp}°</h1>
+                      <h1 className='text-center'>{forecast.humidity}°</h1>
                     </div>
                     <div className='temp-label'>
                       <p className='text-center'>{forecast.label}</p>
@@ -153,15 +159,17 @@ function Weather() {
                   </div>
                 ))}
               </div>
-            </div>
-            {weather.todayData.temp !== null && (() => {
-                const risk = getDiseaseRisk(weather.todayData.temp);
-                return (
-                    <div className={`disease-risk mt-3 p-3 rounded text-center ${risk.colorClass}`}>
-                    <strong className='d-block mb-1'>{risk.disease}</strong>
-                    <p className='mb-0'>{risk.description}</p>
-                    </div>
-                );
+            </div> 
+            */}
+
+            {weather.todayData.humidity !== null && (() => {
+              const risk = getDiseaseRisk(weather.todayData.humidity);
+              return (
+                <div className={`alert flex flex-c flex-center mt-4 ${risk.colorClass}`}>
+                  <strong className="d-block mb-1">{risk.disease}</strong>
+                  <p className="mb-0">{risk.description}</p>
+                </div>
+              );
             })()}
           </div>
         </div>

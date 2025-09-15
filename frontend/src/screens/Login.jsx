@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../styles/css/main.css"
 import { useNavigate } from 'react-router'
-
+import Cow from "../styles/images/cow.svg"
 function Login() {
 
     let navigate = useNavigate();
@@ -104,12 +104,12 @@ function Login() {
                 <div className='form-header'>
                     <div className='flex flex-r flex-center'>
                         <div className='rounded-icon'>
-                            <span className='bi bi-hurricane'></span>
+                           <img src={Cow} height={30} width={30}></img>
                         </div>
                     </div>
                     <div className='form-header-info'>
-                        <h2>AI Cattle Disease Detection</h2>
-                        <p>Sign in to detect diseases in your cattle images using AI</p>
+                        <h2>Cattle Disease Detection</h2>
+                        <p>Sign in to detect diseases in your cattle images using deep learning</p>
                     </div>
                 </div>
                 <div className='form-body'> 
