@@ -61,7 +61,7 @@ function Login() {
                 username: response.fullname
             }));
 
-            navigate("/");
+            navigate("/home");
         })
 
         .catch(err=>{

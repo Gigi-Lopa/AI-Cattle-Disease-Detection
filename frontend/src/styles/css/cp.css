@@ -1,0 +1,208 @@
+/* General Body and Wrapper Styles */
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cover-page-wrapper {
+  overflow-x: hidden; 
+  
+}
+
+/* Top Navbar Design */
+.top-navbar-design {
+  background-color: #f7f7f7; /* Off-white background for the nav */
+  color: #333;
+  padding: 10px 0;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid #eee; /* Subtle separator */
+}
+
+.top-navbar-design .container-fluid {
+  max-width: 1400px; /* Adjust as needed */
+  padding-left: 50px; /* Padding from the left for logo */
+  padding-right: 50px; /* Padding from the right for contact */
+}
+
+.logo-placeholder .blurred-logo {
+  height: 40px; 
+}
+.logo-placeholder h3{
+    margin-left: 15px;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.nav-links .nav-item .nav-link {
+  color: #555;
+  font-weight: 500;
+  margin-right: 25px;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links .nav-item .nav-link:hover {
+  color: #16a34a; 
+}
+
+.contact-info .phone-number {
+  color: #16a34a; 
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.btn-contact {
+  background-color: #16a34a; 
+  color: white;
+  border: 1px solid #16a34a;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-contact:hover {
+  background-color: #0d5a29; 
+  border-color: #0d5a29;
+  color: white;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  display: flex;
+  min-height: calc(100vh - 70px); 
+}
+
+.hero-text-content {
+  flex: 0 0 55%; 
+  background-color: #f7f7f7; 
+  padding: 80px 50px 80px 100px;
+  position: relative;
+}
+
+.hero-image-content {
+  flex: 0 0 45%; 
+  overflow: hidden; 
+}
+
+.hero-image-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.welcome-tag {
+  font-size: 0.9rem;
+  color: #16a34a; 
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+  margin-bottom: 15px;
+  padding-left: 40px;
+}
+
+.welcome-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px; 
+  height: 2px;
+  background-color: #16a34a;
+}
+.hero-headline {
+  font-size: 3.2rem; 
+  font-weight: 700;
+  color: #333;
+  line-height: 1.2;
+}
+
+.hero-headline .since-year {
+  color: #16a34a; 
+  text-decoration: underline; 
+  text-decoration-color: #16a34a;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 2px;
+  font-style: italic;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+}
+
+.btn-dark-outline, .btn-light-outline {
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-dark-outline {
+  background-color: #333;
+  color: white;
+  border: 1px solid #333;
+}
+
+.btn-dark-outline:hover {
+  background-color: #555;
+  border-color: #555;
+  color: white;
+}
+
+.btn-light-outline {
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #333;
+}
+
+.btn-light-outline:hover {
+  background-color: #333;
+  color: white;
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 992px) {
+  .hero-section {
+    flex-direction: column; /* Stack content vertically on smaller screens */
+  }
+  .hero-text-content, .hero-image-content {
+    flex: 0 0 100%; /* Full width */
+    padding: 50px 30px;
+  }
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  .top-navbar-design .nav-links {
+    display: none !important; /* Hide nav links on smaller screens */
+  }
+  .top-navbar-design .contact-info {
+    margin-left: auto; /* Push contact to right if nav is hidden */
+  }
+  .top-navbar-design .container-fluid {
+    justify-content: center !important; /* Center items if no nav */
+  }
+  .logo-placeholder {
+    margin-right: 20px; /* Space between logo and contact */
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-headline {
+    font-size: 2rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+  }
+  .btn-dark-outline, .btn-light-outline {
+    width: 100%;
+    margin-right: 0 !important;
+    margin-bottom: 15px;
+  }
+}

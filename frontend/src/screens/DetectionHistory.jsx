@@ -44,7 +44,7 @@ export default function DetectionHistory() {
     return (
         <div className='main-content'>
             <Navbar username={token.username}>
-                <Link to={"/"} className='nav-link'>Home</Link>
+                <Link to={"/Home"} className='nav-link'>Home</Link>
             </Navbar>
 
             <div className='container'>

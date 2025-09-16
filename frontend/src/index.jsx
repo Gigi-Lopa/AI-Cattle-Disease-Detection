@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import "./styles/bootstrap/css/bootstrap.min.css"
@@ -9,12 +8,17 @@ import Register from './screens/Register';
 import Index from './screens/Index';
 import {createBrowserRouter,  RouterProvider} from "react-router-dom"
 import DetectionHistory from './screens/DetectionHistory';
+import CoverPage from './screens/CoverPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let router = createBrowserRouter([
   {
-    path: "/",
+    path : "/",
+    element : <CoverPage/>
+  },
+  {
+    path: "/home",
     element : <Index/>
   },
   {
@@ -36,9 +40,8 @@ let router = createBrowserRouter([
  
 ])
 
-root.render(
-  
-    <RouterProvider router  = {router}></RouterProvider>)
+root.render(  
+<RouterProvider router  = {router}></RouterProvider>)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

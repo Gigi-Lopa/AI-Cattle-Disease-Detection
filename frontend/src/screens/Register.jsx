@@ -53,7 +53,7 @@ function Register() {
                     username : response.fullname
                 }))
 
-                navigate("/")
+                navigate("/home")
             })
             .catch(error=>{
                 console.log(error)
